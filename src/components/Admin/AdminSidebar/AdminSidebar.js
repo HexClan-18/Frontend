@@ -3,7 +3,7 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { SidebarData } from "./AdminSidebarData";
-import "./AdminSidebar.css";
+import "../../Sidebar.css";
 import { IconContext } from "react-icons";
 
 function AdminSidebar() {
@@ -13,8 +13,8 @@ function AdminSidebar() {
 
   return (
     <>
-      <IconContext.Provider value={{ color: "#fff" }}>
-        <div className="navbar">
+      <IconContext.Provider value={{ color: "#51E2F5" }}>
+        <div className="navbar-second">
           {/* <p align="center">
             {" "}
             <RiIcons.RiAdminFill /> Admin Dashboard{" "}
@@ -34,6 +34,11 @@ function AdminSidebar() {
                 <AiIcons.AiOutlineClose />
               </Link>
             </li>
+            <img
+              className="user-dp"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRerBR3bfynBVdF2gjoii3i_8yI4KOdK5_cxw&usqp=CAU"
+              alt="dp"
+            />
             {SidebarData.map((item, index) => {
               return (
                 <li key={index} className={item.cName}>

@@ -3,7 +3,7 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { SidebarData } from "./GuestSidebarData";
-import "./GuestSidebar.css";
+import "../../Sidebar.css";
 import { IconContext } from "react-icons";
 
 function GuestSidebar() {
@@ -13,8 +13,8 @@ function GuestSidebar() {
 
   return (
     <>
-      <IconContext.Provider value={{ color: "#fff" }}>
-        <div className="navbar">
+      <IconContext.Provider className="icon" value={{ color: "#51E2F5" }}>
+        <div className="navbar-second">
           <div classname="row">
             <div className="col-md-6">
               <Link to="#" className="menu-bars">
@@ -30,6 +30,11 @@ function GuestSidebar() {
                 <AiIcons.AiOutlineClose />
               </Link>
             </li>
+            <img
+              className="user-dp"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRerBR3bfynBVdF2gjoii3i_8yI4KOdK5_cxw&usqp=CAU"
+              alt="dp"
+            />
             {SidebarData.map((item, index) => {
               return (
                 <li key={index} className={item.cName}>

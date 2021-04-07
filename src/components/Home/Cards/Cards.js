@@ -33,25 +33,25 @@ function Cards() {
           <ul className="cards__items">
             <CardItem
               src="Media/Anuradhapura.jpg"
-              text="Find places from Anuradhapura, the "
+              text="12 Places "
               label="Anuradhapura"
               path="#"
             />
             <CardItem
               src="Media/Badulla.jpeg"
-              text="Find places from Badulla, the hillsides"
+              text="12 Places"
               label="Badulla"
               path="#"
             />
             <CardItem
               src="Media/Colombo.jpg"
-              text="Explore around Colombo, the Commercial Capital"
+              text="12 Places"
               label="Colombo"
               path="#"
             />
             <CardItem
               src="Media/Galle.jpg"
-              text="Explore in Galle, the fortified city"
+              text="12 Places"
               label="Galle"
               path="#"
             />
@@ -59,26 +59,26 @@ function Cards() {
           <ul className="cards__items">
             <CardItem
               src="Media/Jaffna.jpg"
-              text="Explore in Jaffna, the city"
+              text="12 Places"
               label="Jaffna"
               path="#"
             />
             <CardItem
               src="Media/Kalutara.jpg"
-              text="Make stay near Kalutara, the administrative capital"
+              text="12 Places"
               label="Kalutara"
               path="#"
             />
             <CardItem
               src="Media/Kandy.jpg"
-              text="Find stays from Kandy, the most sacred city"
+              text="12 Places"
               label="Kandy"
               path="#"
             />
 
             <CardItem
               src="Media/NuwaraEliya.jpg"
-              text="Explore in NuwaraEliya, the mesmerizing city"
+              text="12 Places"
               label="NuwaraEliya"
               path="#"
             />

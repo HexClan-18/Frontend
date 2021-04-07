@@ -17,12 +17,8 @@ const OwnerLogin = () => {
   let history = useHistory();
 
   useEffect(() => {
-    if (isAuthenticated() && isAuthenticated().role === 1) {
-      history.push("/admin/dashboard");
-    } else if (isAuthenticated() && isAuthenticated().role === 2) {
+    if (isAuthenticated() && isAuthenticated().role === 2) {
       history.push("/owner/dashboard");
-    } else if (isAuthenticated() && isAuthenticated().role === 3) {
-      history.push("/guest/dashboard");
     }
   }, [history]);
 
@@ -74,15 +70,9 @@ const OwnerLogin = () => {
           setAuthentication(response.data.token, response.data.user);
 
           /********************************************************************************* */
-          if (isAuthenticated() && isAuthenticated().role === 1) {
-            console.log("Redirecting to admin dashboard");
-            history.push("/admin/dashboard");
-          } else if (isAuthenticated() && isAuthenticated().role === 2) {
+          if (isAuthenticated() && isAuthenticated().role === 2) {
             console.log("Redirecting to Owner dashboard");
             history.push("/owner/dashboard");
-          } else if (isAuthenticated() && isAuthenticated().role === 3) {
-            console.log("Redirecting to Guest dashboard");
-            history.push("/guest/dashboard");
           }
           /******************************************************************************** */
         })

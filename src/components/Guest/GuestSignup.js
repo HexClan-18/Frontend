@@ -19,8 +19,6 @@ const GuestSignup = () => {
   useEffect(() => {
     if (isAuthenticated() && isAuthenticated().role === 1) {
       history.push("/admin/dashboard");
-    } else if (isAuthenticated() && isAuthenticated().role === 2) {
-      history.push("/owner/dashboard");
     } else if (isAuthenticated() && isAuthenticated().role === 3) {
       history.push("/guest/dashboard");
     }
@@ -53,6 +51,7 @@ const GuestSignup = () => {
     setFormData({
       ...formData,
       [evt.target.name]: evt.target.value,
+      // resetting messages
       successMsg: "",
       errorMsg: "",
     });
@@ -91,14 +90,18 @@ const GuestSignup = () => {
         errorMsg: "Passwords do not match",
       });
     } else {
+      // the data inside formdata which needs to be passed to the backend
       const { firstname, lastname, email, password } = formData;
+      //above object is stored in the following data constant
       const data = { firstname, lastname, email, password };
 
       setFormData({ ...formData, loading: true });
 
       guestsignup(data)
+        //the response returned by the server is displayed here
         .then((response) => {
           console.log("Axios signup success: ", response);
+          //setting fields back to empty
           setFormData({
             firstname: "",
             lastname: "",
@@ -106,6 +109,7 @@ const GuestSignup = () => {
             password: "",
             password2: "",
             loading: false,
+            //the registration success message
             successMsg: response.data.successMessage,
           });
         })
@@ -127,7 +131,7 @@ const GuestSignup = () => {
   const showSignupForm = () => {
     return (
       <form className="signup-form" onSubmit={handleSubmit} noValidate>
-        <p align="center"> Signup as a Guest to rent a property </p>
+        <p align="center"> Signup as a Guest to book a property </p>
         {/* firstname */}
         <div className="form-group input-group">
           <div className="input-group-prepend">

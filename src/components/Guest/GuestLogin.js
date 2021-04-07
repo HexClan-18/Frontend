@@ -14,13 +14,13 @@ import { Link } from "react-router-dom";
  **/
 
 const GuestLogin = () => {
+  //useHistory instance
   let history = useHistory();
 
+  //this useEffect will run each time when there is a new url value
   useEffect(() => {
     if (isAuthenticated() && isAuthenticated().role === 1) {
       history.push("/admin/dashboard");
-    } else if (isAuthenticated() && isAuthenticated().role === 2) {
-      history.push("/owner/dashboard");
     } else if (isAuthenticated() && isAuthenticated().role === 3) {
       history.push("/guest/dashboard");
     }
@@ -71,20 +71,16 @@ const GuestLogin = () => {
 
       guestlogin(data)
         .then((response) => {
+          //setting token and user in browser
           setAuthentication(response.data.token, response.data.user);
 
-          /********************************************************************************* */
           if (isAuthenticated() && isAuthenticated().role === 1) {
             console.log("Redirecting to admin dashboard");
             history.push("/admin/dashboard");
-          } else if (isAuthenticated() && isAuthenticated().role === 2) {
-            console.log("Redirecting to Owner dashboard");
-            history.push("/owner/dashboard");
           } else if (isAuthenticated() && isAuthenticated().role === 3) {
             console.log("Redirecting to Guest dashboard");
             history.push("/guest/dashboard");
           }
-          /******************************************************************************** */
         })
         .catch((err) => {
           console.log("login api function error: ", err);

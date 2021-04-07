@@ -2,9 +2,12 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { isAuthenticated, logout } from "../helpers/auth";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Card } from "react-bootstrap";
+import "./Header.css";
+import Logo from "../Media/Logo.jpg";
 
 const Header = ({ history }) => {
+  //pushing the loggedout user to the homepage
   const handleLogout = (evt) => {
     logout(() => {
       history.push("/");
@@ -18,12 +21,17 @@ const Header = ({ history }) => {
   const showNavigation = () => {
     return (
       <Navbar
+        className="navbar"
+        // fixed="top"
         collapseOnSelect
+        // bg="dark"
         expand="lg"
-        bg="dark"
-        variant="dark"
+        variant="light"
         style={{ zIndex: 1 }}
       >
+        <Card>
+          <Card.Img variant="top" className="card " src={Logo} />
+        </Card>
         <Navbar.Brand href="/">Board-Me-In</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -59,9 +67,9 @@ const Header = ({ history }) => {
                   Separated link
                 </NavDropdown.Item> */}
               </NavDropdown>
-              {/* <Nav.Link eventKey={2} href="/signup">
-                <i className="fas fa-edit"></i> Signup
-              </Nav.Link> */}
+              <Nav.Link eventKey={2} href="/help">
+                Help
+              </Nav.Link>
               {/* <Nav.Link href="/login">
                 <i className="fas fa-sign-in-alt"></i> Login
               </Nav.Link> */}
