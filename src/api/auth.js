@@ -1,3 +1,4 @@
+//api requests
 import axios from "axios";
 
 /************************************
@@ -18,6 +19,7 @@ export const ownersignup = async (data) => {
 
 export const guestsignup = async (data) => {
   const config = {
+    //sending header for the api request
     headers: {
       "Content-Type": "application/json",
     },

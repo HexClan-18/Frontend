@@ -1,0 +1,45 @@
+/* .guestProfile-container {
+    background-image: url("../../../Media/006.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* opacity: 0.5; 
+} */
+
+.user-dp-profile{
+    /* margin: 10px 5px 16px 72px; */
+
+    width: 150px;
+    height: 150px;
+    border-radius: 50px;
+  }
+
+body {
+    background-color: rgb(154, 164, 167);
+    font-size: 18px;
+  }
+
+.divider
+{
+	position: relative;
+	height: 1px;
+}
+
+.wrapper
+{
+	padding-bottom: 20px;
+	padding-top: 20px;
+
+}
+.div-transparent:before
+{
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 10%;
+	right: 1%;
+	width: 80%;
+	height: 1px;
+	background-image: url("https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg");
+    /* background-image: linear-gradient(to right, transparent, rgb(242, 244, 248), transparent); */
+}

@@ -17,12 +17,8 @@ const OwnerSignup = () => {
   let history = useHistory();
 
   useEffect(() => {
-    if (isAuthenticated() && isAuthenticated().role === 1) {
-      history.push("/admin/dashboard");
-    } else if (isAuthenticated() && isAuthenticated().role === 2) {
+    if (isAuthenticated() && isAuthenticated().role === 2) {
       history.push("/owner/dashboard");
-    } else if (isAuthenticated() && isAuthenticated().role === 3) {
-      history.push("/guest/dashboard");
     }
   }, [history]);
 

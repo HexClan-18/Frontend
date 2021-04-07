@@ -12,8 +12,9 @@ import AdminDashboard from "./Admin/AdminDashboard";
 import AdminRoute from "./Admin/AdminRoute";
 import GuestRoute from "./Guest/GuestRoute";
 import OwnerRoute from "./Owner/OwnerRoute";
+// import GuestProfile from "./Guest/GuestProfile/GuestProfile";
+import GProfile from "./Guest/GuestProfile/GProfile";
 import NotFound from "./NotFound";
-// import AdminSidebar from "./Admin/AdminSidebar/AdminSidebar";
 import "./App.css";
 
 const App = () => (
@@ -21,7 +22,7 @@ const App = () => (
     <Header />
     <main>
       <Switch>
-        {/* switch will execute the first child of the match */}
+        {/* switch executes the first child of the match */}
         <Route exact path="/" component={Home} />
         <Route exact path="/guestsignup" component={GuestSignup} />
         <Route exact path="/ownersignup" component={OwnerSignup} />
@@ -30,7 +31,10 @@ const App = () => (
         <GuestRoute exact path="/guest/dashboard" component={GuestDashboard} />
         <OwnerRoute exact path="/owner/dashboard" component={OwnerDashboard} />
         <AdminRoute exact path="/admin/dashboard" component={AdminDashboard} />
-        {/* <AdminRoute exact path="/admin/dashboard" component={AdminSidebar} /> */}
+        {/* <GuestRoute exact path="/guest/profile" component={GuestProfile} /> */}
+        <GuestRoute exact path="/guest/profile" component={GProfile} />
+
+        {/* default fallback */}
         <Route component={NotFound} />
       </Switch>
     </main>

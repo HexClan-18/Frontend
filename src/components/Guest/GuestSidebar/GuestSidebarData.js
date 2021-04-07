@@ -1,7 +1,8 @@
 import React from "react";
-import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
-import * as IoIcons from "react-icons/io";
+import * as VscIcons from "react-icons/vsc";
+import * as CgIcons from "react-icons/cg";
+import * as MdIcons from "react-icons/md";
 
 export const SidebarData = [
   {
@@ -11,33 +12,27 @@ export const SidebarData = [
     cName: "nav-text",
   },
   {
-    title: "Payments",
-    path: "/reports",
-    icon: <IoIcons.IoIosPaper />,
+    title: "My Profile",
+    path: "/guest/profile",
+    icon: <CgIcons.CgProfile />,
     cName: "nav-text",
   },
   {
-    title: "A",
-    path: "/products",
-    icon: <FaIcons.FaCartPlus />,
+    title: "Security",
+    path: "#",
+    icon: <MdIcons.MdSecurity />,
     cName: "nav-text",
   },
   {
-    title: "B",
-    path: "/team",
-    icon: <IoIcons.IoMdPeople />,
+    title: "Feedbacks",
+    path: "#",
+    icon: <VscIcons.VscFeedback />,
     cName: "nav-text",
   },
-  {
-    title: "C",
-    path: "/messages",
-    icon: <FaIcons.FaEnvelopeOpenText />,
-    cName: "nav-text",
-  },
-  {
-    title: "D",
-    path: "/support",
-    icon: <IoIcons.IoMdHelpCircle />,
-    cName: "nav-text",
-  },
+  // {
+  //   title: "My Payments",
+  //   path: "/support",
+  //   icon: <IoIcons.IoMdHelpCircle />,
+  //   cName: "nav-text",
+  // },
 ];

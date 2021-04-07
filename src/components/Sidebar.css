@@ -1,5 +1,12 @@
-.navbar {
-    background-color: #e7d0d7;
+.user-dp{
+    margin: 10px 5px 16px 72px;
+    width: 120px;
+    height: 120px;
+    border-radius: 90px;
+  }
+
+.navbar-second{
+    background-color:#1d1919;
     /* height: 60px; */
     display:flex;
     justify-content:flex-start;
@@ -8,13 +15,14 @@
   
   .menu-bars {
     margin-left: 1rem;
+    margin-top: 2rem;
     font-size: 2rem;
     background: none;
   }
   
   .nav-menu {
-    background-color: #a28089;
-    width: 250px;
+    background-color: #1d1919;
+    width: 290px;
     height: 100vh;
     display:flex;
     justify-content:center;
@@ -37,13 +45,14 @@
     padding: 8px 0px 8px 16px;
     list-style: none;
     height: 60px;
+    font-family: "calibri";
   }
   
   .nav-text a {
     text-decoration: none;
     color: #f5f5f5;
     font-size: 19px;
-    font-weight:bold;
+    /* font-weight:bold; */
     width:95%;
     height: 100%;
     display: flex;
@@ -53,7 +62,7 @@
   }
   
   .nav-text a:hover {
-    background-color: #ffa8b6;
+    background-color: #373b3b;
 
   }
   
@@ -63,7 +72,7 @@
   }
   
   .navbar-toggle {
-    background-color: #a28089;
+    background-color: #1d1919;
     width: 100%;
     height: 60px;
     display: flex;
@@ -72,6 +81,6 @@
   }
   
   span {
-    margin-left: 16px;
+    margin-left: 36px;
   }
   
