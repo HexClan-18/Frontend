@@ -22,7 +22,7 @@ const Header = ({ history }) => {
     return (
       <Navbar
         className="navbar"
-        // fixed="top"
+        fixed="top"
         collapseOnSelect
         // bg="dark"
         expand="lg"

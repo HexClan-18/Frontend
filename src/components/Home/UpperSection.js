@@ -6,7 +6,6 @@ import "./UpperSection.css";
 function UpperSection() {
   return (
     <div className="upper-container">
-      <video src="Media/001.MPEG" autoPlay loop muted />
       <h1>WELCOME TO BOARD-ME-IN</h1>
       <p> Searching for a place OR hoping to rent-out your place?</p>
       <div className="upper-btns">

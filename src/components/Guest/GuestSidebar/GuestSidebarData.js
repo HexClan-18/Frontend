@@ -1,8 +1,10 @@
 import React from "react";
 import * as AiIcons from "react-icons/ai";
-import * as VscIcons from "react-icons/vsc";
 import * as CgIcons from "react-icons/cg";
-import * as MdIcons from "react-icons/md";
+//import * as IoIcons from "react-icons/io";
+//import * as MdIcons from "react-icons/md";
+//import * as VscIcons from "react-icons/vsc";
+import * as RiIcons from "react-icons/ri";
 
 export const SidebarData = [
   {
@@ -13,26 +15,29 @@ export const SidebarData = [
   },
   {
     title: "My Profile",
-    path: "/guest/profile",
+    path: `/guest/profile`,
     icon: <CgIcons.CgProfile />,
     cName: "nav-text",
   },
   {
-    title: "Security",
+    title: "Inquiries",
     path: "#",
-    icon: <MdIcons.MdSecurity />,
+    icon: <RiIcons.RiQuestionnaireFill />,
     cName: "nav-text",
+    iconClosed: <RiIcons.RiArrowDownSFill />,
+    iconOpened: <RiIcons.RiArrowUpSFill />,
+
+    subNav: [
+      {
+        title: "Make Inquiry",
+        path: "/guest/inquiryform",
+        icon: <AiIcons.AiOutlineForm />,
+      },
+      {
+        title: "My Inquiries",
+        path: "/guest/inquirylist",
+        icon: <RiIcons.RiFileList3Line />,
+      },
+    ],
   },
-  {
-    title: "Feedbacks",
-    path: "#",
-    icon: <VscIcons.VscFeedback />,
-    cName: "nav-text",
-  },
-  // {
-  //   title: "My Payments",
-  //   path: "/support",
-  //   icon: <IoIcons.IoMdHelpCircle />,
-  //   cName: "nav-text",
-  // },
 ];
