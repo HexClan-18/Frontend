@@ -52,7 +52,6 @@ const GuestLogin = () => {
     /****************************
      * client-side validation
      ***************************/
-
     if (isEmpty(email) || isEmpty(password)) {
       setFormData({
         ...formData,

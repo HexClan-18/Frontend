@@ -1,0 +1,22 @@
+label{
+    font-weight: bold;
+    color: black;
+}
+
+.inquiry-fieldset{
+    text-align: left;
+}
+
+.inquiryform {
+    background: #fff;
+    padding-top: 5px;
+    padding-bottom: 5px;
+   
+    
+  }
+  .validation{
+    font-size: 12;
+    color: red;
+}
+  
+  

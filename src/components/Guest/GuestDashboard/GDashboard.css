@@ -1,0 +1,75 @@
+
+  .guest-upper-container {
+    /* background: url('../../../Media/dashboard.jpg') center center/cover no-repeat; */
+    background-color: rgb(255, 255, 255);
+    height: 100vh;
+    /* width: 100%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    object-fit: contain;
+    margin-left: 250px;
+  }
+  
+  .guest-upper-container > h1 {
+    color: rgb(0, 0, 0);
+    font-size: 60px;
+    /* margin-top: -100px; */
+  }
+  
+  .guest-upper-container > p {
+    margin-top: 8px;
+    color: rgb(51, 3, 3);
+    font-size: 32px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+      'Lucida Sans', Arial, sans-serif;
+      font-size: 30px;
+      
+  }
+  
+  .guest-upper-btns {
+    margin-top: 32px;
+    color: #717171;
+  }
+  
+  .upper-btns .btn {
+    margin: 6px;
+    color: #717171;
+  }
+  
+   
+  @media screen and (max-width: 960px) {
+    .guest-upper-container > h1 {
+      font-size: 70px;
+      margin-top: -150px;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .guest-upper-container > h1 {
+      font-size: 30px;
+      margin-top: -100px;
+    }
+  
+  
+    .btn-mobile {
+      display: block;
+      text-decoration: none;
+    }
+  
+    .btn {
+      width: 100%;
+    }
+
+    .info {
+      margin: 20px;
+      color: #717171;
+      line-height: 25px
+  }
+  
+  .info div {
+      margin-bottom: 20px
+  }
+  }
+  

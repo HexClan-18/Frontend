@@ -2,15 +2,23 @@ body {
     background: rgb(255, 255, 255)
 }
 
+.profile-form{
+    background-color: white;
+    margin-left: 250px;
+}
+
 .dp-update{
     display: inline-flex
 }
 
 .btn-primary {
     color: #f5f5ff;
-    border-color: #0000ff
+    border-color: #0000ff;   
 }
 
+.btn{
+    border-radius: 12px
+}
 /* .btn-primary:hover {
     background-color: #00000f;
     border-color: #0000ff
@@ -47,5 +55,9 @@ body {
 }
 
 .labels {
-    font-size: 11px
+    font-size: 14px
+}
+
+.h4{
+    font-weight: bold;
 }
