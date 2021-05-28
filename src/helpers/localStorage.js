@@ -12,3 +12,7 @@ export const getLocalStorage = (key) => {
 export const deleteLocalStorage = (key) => {
   localStorage.removeItem(key);
 };
+
+export const setLocalStorageForToken = (key, value) => {
+  localStorage.setItem(key, value);
+};

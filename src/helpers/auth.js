@@ -3,12 +3,14 @@ import {
   setLocalStorage,
   getLocalStorage,
   deleteLocalStorage,
+  setLocalStorageForToken,
 } from "./localStorage";
 
 //fuction for creating the local storage and the cookie
 export const setAuthentication = (token, user) => {
   setCookie("token", token);
   setLocalStorage("user", user);
+  setLocalStorageForToken("jwt", token);
 };
 
 //if the cookie is having the token and localStorage is having the user object that object is returned
@@ -24,6 +26,7 @@ export const isAuthenticated = () => {
 export const logout = (next) => {
   deleteCookie("token");
   deleteLocalStorage("user");
+  deleteLocalStorage("jwt");
 
   next();
 };

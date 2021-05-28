@@ -4,7 +4,7 @@ body {
 
 .profile-form{
     background-color: white;
-    margin-left: 250px;
+    /* margin-left: 250px; */
 }
 
 .dp-update{
@@ -19,10 +19,10 @@ body {
 .btn{
     border-radius: 12px
 }
-/* .btn-primary:hover {
+.btn-primary:hover {
     background-color: #00000f;
     border-color: #0000ff
-} */
+}
 
 .form-control:focus {
     box-shadow: none;
@@ -36,7 +36,8 @@ body {
 }
 
 .profile-button:hover {
-    background: #037496
+    background: #026b6b;
+    color: #00000f;
 }
 
 .profile-button:focus {
@@ -45,6 +46,27 @@ body {
 }
 
 .profile-button:active {
+    background: #037496;
+    box-shadow: none
+}
+
+.profile-button-clear{
+    background: rgb(9, 10, 10);
+    box-shadow: none;
+    border: none
+}
+
+.profile-button-clear:hover {
+    background: #393f3f;
+    color: #00000f;
+}
+
+.profile-button-clear:focus {
+    background: #3c3e3f;
+    box-shadow: none
+}
+
+.profile-button-clear:active {
     background: #037496;
     box-shadow: none
 }
@@ -60,4 +82,9 @@ body {
 
 .h4{
     font-weight: bold;
+}
+
+.btn-danger:hover{
+    background: #c43b3b;
+    color: #00000f;
 }

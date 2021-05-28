@@ -7,6 +7,7 @@ import { showLoading } from "../../helpers/loading";
 import { isAuthenticated } from "../../helpers/auth";
 import { Link, useHistory } from "react-router-dom";
 import { guestsignup } from "../../api/auth";
+import Header from "../Header";
 
 /**
  * @author
@@ -214,7 +215,10 @@ const GuestSignup = () => {
         </div>
         {/* signup button */}
         <div className="form-group">
-          <button type="submit" className="btn btn-primary btn-block">
+          <button
+            type="submit"
+            className="btn btn-primary profile-button btn-block"
+          >
             Signup
           </button>
         </div>
@@ -229,20 +233,20 @@ const GuestSignup = () => {
   /****************************
    * RENDERER
    ***************************/
-
   return (
-    <div className="signup-container">
-      <div className="row px-3 vh-100">
-        <div className="col-md-5 mx-auto align-self-center">
-          {successMsg && showSuccessMsg(successMsg)}
-          {errorMsg && showErrorMsg(errorMsg)}
-          {loading && <div className="text-center pb-4">{showLoading()}</div>}
-          {showSignupForm()}
-
-          {/* {JSON.stringify(formData)} */}
+    <>
+      <Header />
+      <div className="signup-container">
+        <div className="row vh-100">
+          <div className="col-md-5 mx-auto align-self-center">
+            {successMsg && showSuccessMsg(successMsg)}
+            {errorMsg && showErrorMsg(errorMsg)}
+            {loading && <div className="text-center pb-4">{showLoading()}</div>}
+            {showSignupForm()}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 export default GuestSignup;

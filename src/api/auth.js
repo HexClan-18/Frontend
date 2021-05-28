@@ -2,7 +2,7 @@
 import axios from "axios";
 
 /************************************
- *SIGNUP API
+ *SIGNUP APIs
  ************************************/
 
 export const ownersignup = async (data) => {
@@ -29,8 +29,9 @@ export const guestsignup = async (data) => {
 
   return response;
 };
+
 /************************************
- *LOGIN API
+ *LOGIN APIs
  ************************************/
 
 export const ownerlogin = async (data) => {

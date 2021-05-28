@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { showErrorMsg } from "../../helpers/message";
 import { showLoading } from "../../helpers/loading";
@@ -7,6 +7,8 @@ import isEmpty from "validator/lib/isEmpty";
 import isEmail from "validator/lib/isEmail";
 import { guestlogin } from "../../api/auth";
 import { Link } from "react-router-dom";
+import { UserContext } from "../App";
+import Header from "../Header";
 
 /**
  * @author
@@ -14,8 +16,13 @@ import { Link } from "react-router-dom";
  **/
 
 const GuestLogin = () => {
+  const { state, dispatch } = useContext(UserContext);
+
   //useHistory instance
   let history = useHistory();
+
+  //inquiry
+  // const { loginHandler } = React.useContext(UserContext);
 
   //this useEffect will run each time when there is a new url value
   useEffect(() => {
@@ -72,6 +79,13 @@ const GuestLogin = () => {
         .then((response) => {
           //setting token and user in browser
           setAuthentication(response.data.token, response.data.user);
+          //inquiry
+          // loginHandler(
+          //   response.data.user.firstname,
+          //   response.data.user._id,
+          //   response.data.user.role
+          // );
+          dispatch({ type: "USER", payload: data.user });
 
           if (isAuthenticated() && isAuthenticated().role === 1) {
             console.log("Redirecting to admin dashboard");
@@ -95,7 +109,6 @@ const GuestLogin = () => {
   /****************************
    * VIEWS
    ***************************/
-
   const showLoginForm = () => (
     <form className="login-form" onSubmit={handleSubmit} noValidate>
       {/* email */}
@@ -132,10 +145,17 @@ const GuestLogin = () => {
       </div>
       {/* login button */}
       <div className="form-group">
-        <button type="submit" className="btn btn-primary btn-block">
+        <button
+          type="submit"
+          className="btn btn-primary profile-button btn-block"
+        >
           Login
         </button>
       </div>
+      {/* forgot password */}
+      <p className="text-center text-white">
+        <Link to="/guest/pwreset">Forgot Password?</Link>
+      </p>
       {/* already have account */}
       <p className="text-center text-white">
         Don't have a Guest account? <Link to="/guestsignup">Register here</Link>
@@ -147,15 +167,18 @@ const GuestLogin = () => {
    * RENDERER
    ***************************/
   return (
-    <div className="login-container">
-      <div className="row px-3 vh-100">
-        <div className="col-md-5 mx-auto align-self-center">
-          {errorMsg && showErrorMsg(errorMsg)}
-          {loading && <div className="text-center pb-4">{showLoading()}</div>}
-          {showLoginForm()}
+    <>
+      <Header />
+      <div className="login-container">
+        <div className="row px-3 vh-100">
+          <div className="col-md-5 mx-auto align-self-center">
+            {errorMsg && showErrorMsg(errorMsg)}
+            {loading && <div className="text-center pb-4">{showLoading()}</div>}
+            {showLoginForm()}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
