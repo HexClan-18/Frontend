@@ -7,7 +7,7 @@ import "./Header.css";
 import Logo from "../Media/Logo.jpg";
 
 const Header = ({ history }) => {
-  //pushing the loggedout user to the homepage
+  //pushing the signedout user to the homepage
   const handleLogout = (evt) => {
     logout(() => {
       history.push("/");
@@ -21,8 +21,8 @@ const Header = ({ history }) => {
   const showNavigation = () => {
     return (
       <Navbar
-        className="navbar"
-        fixed="top"
+        className="main-navbar"
+        // fixed="top"
         collapseOnSelect
         // bg="dark"
         expand="lg"
@@ -30,7 +30,7 @@ const Header = ({ history }) => {
         style={{ zIndex: 1 }}
       >
         <Card>
-          <Card.Img variant="top" className="card " src={Logo} />
+          <Card.Img variant="top" className="logo-card " src={Logo} />
         </Card>
         <Navbar.Brand href="/">Board-Me-In</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -68,7 +68,7 @@ const Header = ({ history }) => {
                 </NavDropdown.Item> */}
               </NavDropdown>
               <Nav.Link eventKey={2} href="/help">
-                Help
+                {/* Help */}
               </Nav.Link>
               {/* <Nav.Link href="/login">
                 <i className="fas fa-sign-in-alt"></i> Login
@@ -80,6 +80,7 @@ const Header = ({ history }) => {
           {isAuthenticated() && isAuthenticated().role === 1 && (
             <Nav>
               <Nav.Link href="/admin/dashboard">Dashboard</Nav.Link>
+              <Nav.Link>Loggedin As {isAuthenticated().firstname}</Nav.Link>
             </Nav>
           )}
 
@@ -94,6 +95,7 @@ const Header = ({ history }) => {
           {isAuthenticated() && isAuthenticated().role === 3 && (
             <Nav>
               <Nav.Link href="/guest/dashboard">Dashboard</Nav.Link>
+              <Nav.Link>Signed In As {isAuthenticated().firstname}</Nav.Link>
             </Nav>
           )}
 

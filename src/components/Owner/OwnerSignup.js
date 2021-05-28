@@ -7,6 +7,7 @@ import { showLoading } from "../../helpers/loading";
 import { isAuthenticated } from "../../helpers/auth";
 import { Link, useHistory } from "react-router-dom";
 import { ownersignup } from "../../api/auth";
+import Header from "../Header";
 
 /**
  * @author
@@ -206,7 +207,10 @@ const OwnerSignup = () => {
         </div>
         {/* signup button */}
         <div className="form-group">
-          <button type="submit" className="btn btn-primary btn-block">
+          <button
+            type="submit"
+            className="btn btn-primary profile-button btn-block"
+          >
             Signup
           </button>
         </div>
@@ -223,18 +227,21 @@ const OwnerSignup = () => {
    ***************************/
 
   return (
-    <div className="signup-container">
-      <div className="row px-3 vh-100">
-        <div className="col-md-5 mx-auto align-self-center">
-          {successMsg && showSuccessMsg(successMsg)}
-          {errorMsg && showErrorMsg(errorMsg)}
-          {loading && <div className="text-center pb-4">{showLoading()}</div>}
-          {showSignupForm()}
+    <>
+      <Header />
+      <div className="signup-container">
+        <div className="row px-3 vh-100">
+          <div className="col-md-5 mx-auto align-self-center">
+            {successMsg && showSuccessMsg(successMsg)}
+            {errorMsg && showErrorMsg(errorMsg)}
+            {loading && <div className="text-center pb-4">{showLoading()}</div>}
+            {showSignupForm()}
 
-          {/* {JSON.stringify(formData)} */}
+            {/* {JSON.stringify(formData)} */}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 export default OwnerSignup;

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import axios from "axios";
 
 class TableRow extends Component {
@@ -14,7 +13,7 @@ class TableRow extends Component {
       .get("http://localhost:5000/user/inquiry")
       .then((response) => {
         this.setState({ user: response.data.data });
-        console.log(response.data.data);
+        //console.log(response.data.data);
       })
 
       .catch(function (error) {
@@ -36,15 +35,18 @@ class TableRow extends Component {
     axios
       .delete("http://localhost:5000/user/inquiry/" + this.props.obj._id)
       .then((response) => {
-        this.setState({ user: response.data.data });
-        alert("Are you sure want to delete..");
+        // window.location.reload();
+
+        //this.setState({ user: response.data.data });
+
+        this.getInquiryData();
+        console.log(response);
         this.tabRow();
       })
 
       .catch(function (error) {
         console.log(error);
       });
-    window.location.reload(true);
   }
 
   render() {

@@ -1,9 +1,14 @@
-.navbar{
+.main-navbar{
     background-color:#51E2F5;
 }
 
-.card{
+.logo-card{
     height: 40pt;
     width :40pt;
-    margin-right: 10pt;
+    /* margin-right: 10pt; */
+}
+
+.logo-card-sidebar{
+    height: 40pt;
+    width :40pt;
 }
