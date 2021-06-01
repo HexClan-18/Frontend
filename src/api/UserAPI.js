@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 function UserAPI(token) {
@@ -7,45 +7,46 @@ function UserAPI(token) {
     const [cart, setCart] = useState([])
     const [history, setHistory] = useState([])
 
-    useEffect(() =>{
-        if(token){
-            const getUser = async () =>{
+    useEffect(() => {
+        if (token) {
+            const getUser = async () => {
                 try {
                     const res = await axios.get('/user/infor', {
-                        headers: {Authorization: token}
+                        headers: { Authorization: token }
                     })
 
                     setIsLogged(true)
                     res.data.role === 1 ? setIsAdmin(true) : setIsAdmin(false)
 
+                    setCart(res.data.cart)
 
                 } catch (err) {
-                    alert(err.response.msg)
+                    alert(err)
                 }
             }
 
             getUser()
-            
-        }
-    },[token])
 
-    
+        }
+    }, [token])
+
+
 
     const addCart = async (product) => {
-        if(!isLogged) return alert("Please login to continue buying")
+        if (!isLogged) return alert("Please login to continue buying")
 
-        const check = cart.every(item =>{
+        const check = cart.every(item => {
             return item._id !== product._id
         })
 
-        if(check){
-            setCart([...cart, {...product, quantity: 1}])
+        if (check) {
+            setCart([...cart, { ...product, quantity: 1 }])
 
-            await axios.patch('/user/addcart', {cart: [...cart, {...product, quantity: 1}]}, {
-                headers: {Authorization: token}
+            await axios.patch('/user/addcart', { cart: [...cart, { ...product, quantity: 1 }] }, {
+                headers: { Authorization: token }
             })
 
-        }else{
+        } else {
             alert("This product has been added to cart.")
         }
     }
@@ -60,4 +61,3 @@ function UserAPI(token) {
 }
 
 export default UserAPI
- 

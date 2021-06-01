@@ -1,5 +1,5 @@
-import React, {useState, useContext} from 'react'
-import {GlobalState} from '../../../GlobalState'
+import React, { useState, useContext } from 'react'
+import { GlobalState } from '../../../GlobalState'
 import axios from 'axios'
 
 function Categories() {
@@ -11,39 +11,39 @@ function Categories() {
     const [onEdit, setOnEdit] = useState(false)
     const [id, setID] = useState('')
 
-    const createCategory = async e =>{
+    const createCategory = async e => {
         e.preventDefault()
         try {
-            if(onEdit){
-                const res = await axios.put(`/api/category/${id}`, {name: category}, {
-                    headers: {Authorization: token}
+            if (onEdit) {
+                const res = await axios.put(`/api/category/${id}`, { name: category }, {
+                    headers: { Authorization: token }
                 })
                 alert(res.data.msg)
-            }else{
-                const res = await axios.post('/api/category', {name: category}, {
-                    headers: {Authorization: token}
+            } else {
+                const res = await axios.post('/api/category', { name: category }, {
+                    headers: { Authorization: token }
                 })
                 alert(res.data.msg)
             }
             setOnEdit(false)
             setCategory('')
             setCallback(!callback)
-            
+
         } catch (err) {
             alert(err.response.data.msg)
         }
     }
 
-    const editCategory = async (id, name) =>{
+    const editCategory = async (id, name) => {
         setID(id)
         setCategory(name)
         setOnEdit(true)
     }
 
-    const deleteCategory = async name =>{
+    const deleteCategory = async name => {
         try {
             const res = await axios.delete(`/api/category/${name}`, {
-                headers: {Authorization: token}
+                headers: { Authorization: token }
             })
             alert(res.data.msg)
             setCallback(!callback)
@@ -57,9 +57,9 @@ function Categories() {
             <form onSubmit={createCategory}>
                 <label htmlFor="category">Category</label>
                 <input type="text" name="category" value={category} required
-                onChange={e => setCategory(e.target.value)} />
+                    onChange={e => setCategory(e.target.value)} />
 
-                <button type="submit">{onEdit? "Update" : "Create"}</button>
+                <button type="submit">{onEdit ? "Update" : "Create"}</button>
             </form>
 
             <div className="col">

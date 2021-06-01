@@ -1,5 +1,5 @@
-import React, {useContext} from 'react'
-import {GlobalState} from '../../../GlobalState'
+import React, { useContext } from 'react'
+import { GlobalState } from '../../../GlobalState'
 
 function Filters() {
     const state = useContext(GlobalState)
@@ -32,7 +32,7 @@ function Filters() {
             </div>
 
             <input type="text" value={search} placeholder="Where do you search an accommodation?"
-            onChange={e => setSearch(e.target.value.toLowerCase())} />
+                onChange={e => setSearch(e.target.value.toLowerCase())} />
 
             <div className="row sort">
                 <span>Sort By: </span>

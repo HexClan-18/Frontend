@@ -1,5 +1,5 @@
-import React, {useContext} from 'react'
-import {GlobalState} from '../../../GlobalState'
+import React, { useContext } from 'react'
+import { GlobalState } from '../../../GlobalState'
 import NotFound from '../utils/not_found/NotFound'
 
 function LoadMore() {
@@ -10,8 +10,8 @@ function LoadMore() {
     return (
         <div className="load_more">
             {
-                result < page * 9 ? <NotFound/>
-                : <button onClick={() => setPage(page+1)}>Load more</button>
+                result < page * 9 ? <NotFound />
+                    : <button onClick={() => setPage(page + 1)}>Load more</button>
             }
         </div>
     )
