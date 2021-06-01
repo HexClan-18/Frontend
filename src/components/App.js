@@ -55,7 +55,6 @@ const Routing = () => {
   }, []);
   return (
     <Switch>
-      {/* switch executes the first child of the match */}
       <Route exact path="/" component={Home} />
 
       {/* NEW SIDEBAR */}
@@ -127,11 +126,12 @@ const Routing = () => {
         path="/owner/inquirylist"
         render={(props) => <OwnerLayout {...props} />}
       />
-      {/* <Route
+      <Route
         exact
-        path="/owner/property"
+        path="/owner/guestinquirylist"
         render={(props) => <OwnerLayout {...props} />}
-      /> */}
+      />
+
       <Route exact path="/owner/property" component={CreateProduct} />
 
       {/* ************* */}

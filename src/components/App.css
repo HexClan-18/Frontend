@@ -84,3 +84,9 @@
     position: sticky;
     top: 0;
   }
+
+  .dashboard-card{
+    width: 100px;
+    height: max-content;
+    margin: 26px auto;
+  }

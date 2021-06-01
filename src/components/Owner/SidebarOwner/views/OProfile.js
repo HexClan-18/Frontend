@@ -359,7 +359,11 @@ const OProfile = () => {
                                 <div className="d-flex ">
                                   <Card.Title as="h4">Update Bio</Card.Title>
                                 </div>
-                                <div className="row mt-3">
+                                <p className="card-category">
+                                  Write a short description about yourself so
+                                  that guests get to know you well...
+                                </p>
+                                <div className="row mt-1">
                                   <div className="col-md-12">
                                     <label className="labels">Bio</label>
                                     <textarea
@@ -507,11 +511,11 @@ const OProfile = () => {
                 </Card.Body>
                 <Card.Footer>
                   <hr></hr>
-                  <div className="stats">
+                  {/* <div className="stats">
                     <i className="fas fa-history"></i>
                     Updated 1 minute ago
-                    {/*********** getting current date {new Date().getFullYear()}{" "} *******/}
-                  </div>
+                    ********** getting current date {new Date().getFullYear()}{" "} ******
+                  </div> */}
                 </Card.Footer>
               </Card>
             </Col>

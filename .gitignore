@@ -1,19 +1,8 @@
 
 /node_modules
-#/public/Media
-/public/Media/002.jpg
-/public/Media/Single.jpg
-/public/Media/NuwaraEliya.jpg
-/public/Media/Shared.jpg
-/public/Media/Kandy.jpg
-/public/Media/House.jpeg
-/public/Media/Jaffna.jpg
-/public/Media/Kalutara.jpg
-/public/Media/002.jpg
-/public/Media/Galle.jpg
-/public/Media/Badulla.jpeg
-/public/Media/Anuradhapura.jpg
-#/public/Media/Colombo.jpg
 
+/Media
 
 /src/Media
+
+/public/Media

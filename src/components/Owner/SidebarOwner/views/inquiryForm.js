@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Button, Form, Row, Col, Card, Container } from "react-bootstrap";
 import { UserContextInquiry } from "../../../../context/userContextInquiry";
 import axios from "axios";
-import swal from "sweetalert";
 
 export default class inquiryform extends Component {
   static contextType = UserContextInquiry;
@@ -46,7 +45,7 @@ export default class inquiryform extends Component {
     let reasonError = "";
 
     if (!this.state.inquirytype) {
-      inquirytypeError = "You must select one option";
+      inquirytypeError = "You must select option";
     }
 
     if (!this.state.reason) {
@@ -73,8 +72,7 @@ export default class inquiryform extends Component {
         .post("http://localhost:5000/user/inquiry", obj)
         .then((res) => console.log(res.data));
 
-      // alert("successfully added");
-      swal("Successfully Added!");
+      alert("successfully added");
 
       this.setState({
         inquirytype: " ",
@@ -114,21 +112,10 @@ export default class inquiryform extends Component {
                     <Col sm={10}>
                       <Form.Check
                         type="radio"
-                        label="Regarding Accomodation Places"
-                        value="Regarding Accomodation Place Inquiries"
-                        checked={
-                          this.state.inquirytype ===
-                          "Regarding Accomodation Place Inquiries"
-                        }
-                        onChange={this.onChangeInquiryType}
-                      />
-                      <Form.Check
-                        type="radio"
                         label="Regarding Board-Me-In"
-                        value="Regarding System Inquiries"
+                        value="Regarding Board-Me-In"
                         checked={
-                          this.state.inquirytype ===
-                          "Regarding System Inquiries"
+                          this.state.inquirytype === "Regarding Board-Me-In"
                         }
                         onChange={this.onChangeInquiryType}
                       />
@@ -149,7 +136,6 @@ export default class inquiryform extends Component {
                   </Form.Group>
                 </fieldset>
                 <br />
-
                 <Form.Group as={Row} controlId="formHorizontalreason">
                   <Form.Label column sm={2} style={{ fontSize: 17 }}>
                     Reason
@@ -163,7 +149,7 @@ export default class inquiryform extends Component {
                     />
 
                     {this.state.reasonError ? (
-                      <div style={{ fontSize: 20, color: "red" }}>
+                      <div style={{ fontSize: 14, color: "red" }}>
                         {this.state.reasonError}
                       </div>
                     ) : null}
@@ -173,11 +159,7 @@ export default class inquiryform extends Component {
                 <br />
                 <Form.Group as={Row}>
                   <Col sm={{ span: 10, offset: 2 }}>
-                    <Button
-                      onClick={(e) => this.onSubmit(e)}
-                      type="button"
-                      className="btn btn-secondary profile-button"
-                    >
+                    <Button onClick={(e) => this.onSubmit(e)} type="button">
                       Submit
                     </Button>
                   </Col>
@@ -186,10 +168,6 @@ export default class inquiryform extends Component {
             </Card.Body>
             <Card.Footer>
               <hr></hr>
-              <div className="stats">
-                <i className="fas fa-history"></i>
-                Sent 1 minute ago
-              </div>
             </Card.Footer>
           </Card>
         </Container>
@@ -197,22 +175,3 @@ export default class inquiryform extends Component {
     );
   }
 }
-
-/*   <Container fluid>
-  <Card>
-          <Card.Header>
-            <Card.Title as="h4">Users Behavior</Card.Title>
-            <p className="card-category">24 Hours performance</p>
-          </Card.Header>
-          <Card.Body>
-            <div className="ct-chart" id="chartHours"></div>
-          </Card.Body>
-          <Card.Footer>
-            <hr></hr>
-            <div className="stats">
-              <i className="fas fa-history"></i>
-              Updated 1 minute ago
-            </div>
-          </Card.Footer>
-        </Card>   </Container>
-        */

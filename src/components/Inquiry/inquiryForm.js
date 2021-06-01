@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Button, Form, Row, Col } from "react-bootstrap";
 import "./inquiryCSS/inquiryForm.css";
+import { Link } from "react-router-dom";
 import axios from "axios";
+// import GuestSidebar from "../Guest/GuestSidebar/GuestSidebar";
 import { UserContextInquiry } from "../../context/userContextInquiry";
 
 export default class inquiryform extends Component {
@@ -108,11 +110,11 @@ export default class inquiryform extends Component {
                 <Col sm={10}>
                   <Form.Check
                     type="radio"
-                    label="Regarding Accomodation Place Inquiries"
-                    value="Regarding Accomodation Place Inquiries"
+                    label="Regarding Accomadation Place Inquiries"
+                    value="Regarding Accomadation Place Inquiries"
                     checked={
                       this.state.inquirytype ===
-                      "Regarding Accomodation Place Inquiries"
+                      "Regarding Accomadation Place Inquiries"
                     }
                     onChange={this.onChangeInquiryType}
                   />
