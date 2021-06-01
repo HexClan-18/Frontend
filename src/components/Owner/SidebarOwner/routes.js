@@ -3,6 +3,7 @@ import OProfile from "./views/OProfile";
 import inquiryForm from "./views/inquiryForm";
 import inquiryList from "./views/inquiryList";
 import CreateProduct from "./views/CreateProduct";
+import admininqlist from "./views/AdminInqList";
 
 const dashboardRoutes = [
   {
@@ -38,6 +39,14 @@ const dashboardRoutes = [
     name: "My inquiries",
     icon: "nc-icon nc-notes",
     component: inquiryList,
+    layout: "/owner",
+  },
+
+  {
+    path: "/guestinquirylist",
+    name: "Guest inquiries",
+    icon: "nc-icon nc-notes",
+    component: admininqlist,
     layout: "/owner",
   },
 ];

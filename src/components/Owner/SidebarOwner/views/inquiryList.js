@@ -18,10 +18,10 @@ export default class inquirylist extends Component {
       .then((response) => {
         this.setState({
           user:
-            this.context.loginDetails.userId === "6059b1c74698b333bc90e1ea"
+            this.context.loginDetails.userId == "6059b1c74698b333bc90e1ea"
               ? response.data.data
               : response.data.data.filter(
-                  (object) => object.userid === this.context.loginDetails.userId
+                  (object) => object.userid == this.context.loginDetails.userId
                 ),
         });
       })
@@ -43,16 +43,15 @@ export default class inquirylist extends Component {
           <Card>
             <Card.Header>
               <Card.Title as="h4">My Inquiries</Card.Title>
-              <p className="card-category">Inquiries made by you</p>
+              <p className="card-category">Inform an issue to System Admin</p>
             </Card.Header>
             <Card.Body>
               <table className="table table-striped">
                 <thead>
                   <tr>
-                    <th></th>
+                    <th>Date & Time</th>
                     <th>Inquiry Type</th>
-                    <th>Reason</th>
-                    <th colSpan="2">Action</th>
+                    <th colSpan="2">More info..</th>
                   </tr>
                 </thead>
                 <tbody>{this.tabRow()}</tbody>
@@ -60,10 +59,6 @@ export default class inquirylist extends Component {
             </Card.Body>
             <Card.Footer>
               <hr></hr>
-              <div className="stats">
-                <i className="fas fa-history"></i>
-                Updated 1 minute ago
-              </div>
             </Card.Footer>
           </Card>{" "}
         </Container>

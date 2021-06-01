@@ -1,5 +1,10 @@
 import React, { Component } from "react";
+import { Button, Dropdown, ButtonGroup, Card } from "react-bootstrap";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import axios from "axios";
+import inquiryAction from "./inquiryAction";
+import { CgWindows } from "react-icons/cg";
+import { AiFillWarning } from "react-icons/ai";
 
 class TableRow extends Component {
   constructor(props) {
@@ -32,10 +37,12 @@ class TableRow extends Component {
   }
 
   delete() {
+    alert("Are you sure want to delete this inquiry?");
+
     axios
       .delete("http://localhost:5000/user/inquiry/" + this.props.obj._id)
       .then((response) => {
-        // window.location.reload();
+        window.location.reload();
 
         //this.setState({ user: response.data.data });
 
@@ -52,14 +59,38 @@ class TableRow extends Component {
   render() {
     return (
       <tr>
-        <td>{this.props.obj.userid}</td>
+        <td>{this.props.obj.createdAt}</td>
         <td>{this.props.obj.inquirytype}</td>
-        <td>{this.props.obj.reason}</td>
 
         <td>
-          <button onClick={this.delete} className="btn btn-danger">
-            Delete
-          </button>
+          <Dropdown as={ButtonGroup}>
+            <Button variant="success">View Reason</Button>
+
+            <Dropdown.Toggle
+              split
+              variant="success"
+              id="dropdown-split-basic"
+            />
+            <Dropdown.Menu>
+              <Card style={{ width: "18rem" }}>
+                <Card.Body>
+                  <Card.Text>{this.props.obj.reason}</Card.Text>
+                </Card.Body>
+              </Card>
+
+              <td>
+                <Dropdown.Item>
+                  <tr>
+                    <td>
+                      <button onClick={this.delete} className="btn btn-danger">
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                </Dropdown.Item>
+              </td>
+            </Dropdown.Menu>
+          </Dropdown>
         </td>
       </tr>
     );

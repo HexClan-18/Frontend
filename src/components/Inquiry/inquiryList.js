@@ -55,8 +55,7 @@ export default class inquirylist extends Component {
             <table className="table table-striped">
               <thead>
                 <tr>
-                  <th>User Id</th>
-                  <th>Inquiry Type</th>
+                  <th col>Inquiry Type</th>
                   <th>Reason</th>
                   <th colSpan="2">Action</th>
                 </tr>
