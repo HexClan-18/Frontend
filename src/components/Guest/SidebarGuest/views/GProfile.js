@@ -5,6 +5,7 @@ import swal from "sweetalert";
 import { Card, Container, Row, Col } from "react-bootstrap";
 import * as CgIcons from "react-icons/cg";
 import * as GrIcons from "react-icons/gr";
+import Axios from 'axios'
 
 /**
  * @author
@@ -18,16 +19,20 @@ const GProfile = () => {
   const [loading, setLoading] = useState("");
 
   useEffect(() => {
-    fetch("/profile", {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("jwt"),
-      },
+    Axios.get('/profile').then(res => {
+      setData(res.data.user);
+      console.log(res.data.user);
     })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
-        setData(result.user);
-      });
+    // fetch("/profile", {
+    //   headers: {
+    //     Authorization: "Bearer " + localStorage.getItem("jwt"),
+    //   },
+    // })
+    //   .then((res) => res.json())
+    //   .then((result) => {
+    //     console.log(result);
+    //     setData(result.user);
+    //   });
   }, []);
 
   /****************************
@@ -259,7 +264,7 @@ const GProfile = () => {
                                 alt="dp"
                                 src={item.pic}
 
-                                // src={state ? state.pic : "loading"}
+                              // src={state ? state.pic : "loading"}
                               />
                             </div>
                             <div>
