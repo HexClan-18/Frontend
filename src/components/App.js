@@ -38,6 +38,9 @@ import { reducer, initialState } from "../reducers/userReducer";
 
 //INQUIRY
 import UserContextInquiryProvider from "../context/userContextInquiry";
+import { DataProvider } from '../GlobalState'
+
+
 
 export const UserContext = createContext();
 
@@ -72,6 +75,47 @@ const Routing = () => {
         path="/admin/admindashboard"
         render={(props) => <AdminLayout {...props} />}
       />
+      <Route
+        path="/admin/products"
+        render={(props) => <AdminLayout {...props} />}
+      />
+      <Route
+        path="/admin/category"
+        render={(props) => <AdminLayout {...props} />}
+      />
+      <Route
+        path="/admin/detail/:id"
+        render={(props) => <AdminLayout {...props} />}
+      />
+      <Route
+        path="/admin/create_product"
+        render={(props) => <AdminLayout {...props} />}
+      />
+      <Route
+        path="/admin/edit_product/:id"
+        render={(props) => <AdminLayout {...props} />}
+      />
+      <Route
+        path="/admin/history"
+        render={(props) => <AdminLayout {...props} />}
+      />
+      <Route
+        path="/admin/history/:id"
+        render={(props) => <AdminLayout {...props} />}
+      />
+      <Route
+        path="/admin/chat"
+        render={(props) => <AdminLayout {...props} />}
+      />
+      <Route
+        path="/admin/payment"
+        render={(props) => <AdminLayout {...props} />}
+      />
+      <Route
+        path="/admin/comment"
+        render={(props) => <AdminLayout {...props} />}
+      />
+
       <Route
         path="/admin/inquirylist"
         render={(props) => <AdminLayout {...props} />}
@@ -171,9 +215,11 @@ function App() {
   return (
     <UserContext.Provider value={{ state, dispatch }}>
       <UserContextInquiryProvider>
-        <BrowserRouter>
-          <Routing />
-        </BrowserRouter>
+        <DataProvider>
+          <BrowserRouter>
+            <Routing />
+          </BrowserRouter>
+        </DataProvider>
       </UserContextInquiryProvider>
     </UserContext.Provider>
   );
