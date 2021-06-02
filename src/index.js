@@ -11,6 +11,7 @@ import Axios from 'axios'
 import './index.css'
 
 Axios.defaults.baseURL = "http://localhost:5000"
+Axios.defaults.headers.common = { 'Authorization': `Bearer ${localStorage.getItem("jwt")}` }
 
 
 ReactDOM.render(

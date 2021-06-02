@@ -16,10 +16,10 @@ import ProductsPage from "../../mainpages/products/Products";
 
 const dashboardRoutes = [
   {
-    path: "/dashboard",
-    name: "Dashboard",
-    icon: "nc-icon nc-chart-pie-35",
-    component: Dashboard,
+    path: "/products",
+    name: "Accomodations",
+    icon: "nc-icon nc-chat-round",
+    component: ProductsPage,
     layout: "/admin",
   },
   {
@@ -27,13 +27,6 @@ const dashboardRoutes = [
     name: "User inquiries",
     icon: "nc-icon nc-chat-round",
     component: AdminInqList,
-    layout: "/admin",
-  },
-  {
-    path: "/products",
-    name: "User inquiries",
-    icon: "nc-icon nc-chat-round",
-    component: ProductsPage,
     layout: "/admin",
   }
 ];

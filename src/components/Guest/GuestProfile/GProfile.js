@@ -3,6 +3,8 @@ import GuestSidebar from "../GuestSidebar/GuestSidebar";
 import "./GProfile.css";
 import { UserContext } from "../../App";
 import swal from "sweetalert";
+import { GlobalState } from '../../../GlobalState'
+import Axios from 'axios'
 
 /**
  * @author
@@ -11,20 +13,26 @@ import swal from "sweetalert";
 
 const GProfile = () => {
   const [data, setData] = useState([]);
-  const { state, dispatch } = useContext(UserContext);
+  const state = useContext(GlobalState)
+  // const { state, dispatch } = useContext(UserContext);
   const [image, setImage] = useState("");
 
+
+
   useEffect(() => {
-    fetch("/profile", {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("jwt"),
-      },
+    Axios.get('/profile').then(res => {
+      setData(res.data.user);
     })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
-        setData(result.user);
-      });
+    // fetch("/profile", {
+    //   headers: {
+    //     Authorization: "Bearer " + localStorage.getItem("jwt"),
+    //   },
+    // })
+    //   .then((res) => res.json())
+    //   .then((result) => {
+    //     console.log(result);
+    //     setData(result.user);
+    //   });
   }, []);
 
   /****************************
@@ -254,7 +262,7 @@ const GProfile = () => {
                               alt="dp"
                               src={item.pic}
 
-                              // src={state ? state.pic : "loading"}
+                            // src={state ? state.pic : "loading"}
                             />
                           </div>
                           <div>
