@@ -39,7 +39,6 @@
     "core-js": "^3.11.1",
     "coreui": "^0.4.2-alpha2",
     "enzyme": "^3.11.0",
-    "node-sass": "4.14.1",
     "prop-types": "^15.7.2",
     "react-app-polyfill": "^2.0.0",
     "react-chartist": "0.14.3",
