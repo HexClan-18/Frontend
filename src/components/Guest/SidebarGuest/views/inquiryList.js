@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import TableRow from "../../../Inquiry/TableRow";
-import { UserContextInquiry } from "../../../../context/userContextInquiry";
+import { UserContext } from "../../../../context/userContext";
 import { Card, Container } from "react-bootstrap";
 
 export default class inquirylist extends Component {
@@ -10,19 +10,17 @@ export default class inquirylist extends Component {
     this.state = { user: [] };
   }
 
-  static contextType = UserContextInquiry;
+  static contextType = UserContext;
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/user/inquiry")
+      .get("/user/inquiry")
       .then((response) => {
+        console.log(response);
         this.setState({
-          user:
-            this.context.loginDetails.userId == "6059b1c74698b333bc90e1ea"
-              ? response.data.data
-              : response.data.data.filter(
-                  (object) => object.userid == this.context.loginDetails.userId
-                ),
+          user: response.data.data.filter(
+            (object) => object.userid == this.context.loginDetails._id
+          ),
         });
       })
       .catch(function (error) {

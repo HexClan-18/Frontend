@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Button, Form, Row, Col, Card, Container } from "react-bootstrap";
-import { UserContextInquiry } from "../../../../context/userContextInquiry";
+import { UserContext } from "../../../../context/userContext";
 import axios from "axios";
 
 export default class inquiryform extends Component {
-  static contextType = UserContextInquiry;
+  static contextType = UserContext;
 
   constructor(props) {
     super(props);
@@ -24,7 +24,7 @@ export default class inquiryform extends Component {
 
   componentDidMount() {
     this.setState(() => ({
-      userid: this.context.loginDetails.userId,
+      userid: this.context.loginDetails._id,
     }));
   }
 
@@ -69,7 +69,7 @@ export default class inquiryform extends Component {
     };
     if (isValid) {
       axios
-        .post("http://localhost:5000/user/inquiry", obj)
+        .post("/user/inquiry", obj)
         .then((res) => console.log(res.data));
 
       alert("successfully added");

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Button, Form, Row, Col, Card, Container } from "react-bootstrap";
-import { UserContextInquiry } from "../../../../context/userContextInquiry";
+import { UserContext } from "../../../../context/userContext";
 import axios from "axios";
 
 export default class inquiryform extends Component {
-  static contextType = UserContextInquiry;
+  static contextType = UserContext;
 
   constructor(props) {
     super(props);

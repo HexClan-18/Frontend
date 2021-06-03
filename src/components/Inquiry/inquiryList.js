@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import TableRow from "./TableRow";
 // import GuestSidebar from "../Guest/GuestSidebar/GuestSidebar";
-import { UserContextInquiry } from "../../context/userContextInquiry";
+import { UserContextInquiry } from "../../context/userContext";
 
 export default class inquirylist extends Component {
   constructor(props) {
@@ -21,8 +21,8 @@ export default class inquirylist extends Component {
             this.context.loginDetails.userId == "6059b1c74698b333bc90e1ea"
               ? response.data.data
               : response.data.data.filter(
-                  (object) => object.userid == this.context.loginDetails.userId
-                ),
+                (object) => object.userid == this.context.loginDetails.userId
+              ),
         });
       })
       .catch(function (error) {

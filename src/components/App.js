@@ -12,7 +12,7 @@ import "./Admin/SidebarAdmin/assets/css/demo.css";
 import AdminLayout from "./Admin/SidebarAdmin/layouts/Admin";
 import GuestLayout from "./Guest/SidebarGuest/layouts/Guest";
 import OwnerLayout from "./Owner/SidebarOwner/layouts/Owner";
-import CreateProduct from "./Owner/SidebarOwner/views/CreateProduct";
+import CreateProduct from "./mainpages/createProduct/CreateProduct";
 
 //
 import Home from "./Home/Home";
@@ -34,28 +34,12 @@ import OPwordReset from "./Owner/OPwordReset";
 import ONewPword from "./Owner/ONewPword";
 
 //REDUCER
-import { reducer, initialState } from "../reducers/userReducer";
 
 //INQUIRY
-import UserContextInquiryProvider from "../context/userContextInquiry";
-import { DataProvider } from '../GlobalState'
+import UserContext from "../context/userContext";
 
-
-
-export const UserContext = createContext();
 
 const Routing = () => {
-  const history = useHistory();
-  const { state, dispatch } = useContext(UserContext);
-
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      dispatch({ type: "USER", payload: user });
-    }
-
-    console.log(typeof user, user);
-  }, []);
   return (
     <Switch>
       <Route exact path="/" component={Home} />
@@ -66,7 +50,6 @@ const Routing = () => {
         path="/admin/dashboard"
         render={(props) => <AdminLayout {...props} />}
       />
-
       <Route
         path="/admin/user"
         render={(props) => <AdminLayout {...props} />}
@@ -147,6 +130,16 @@ const Routing = () => {
         path="/guest/inquirylist"
         render={(props) => <GuestLayout {...props} />}
       />
+      <Route
+        path="/guest/detail/:id"
+        render={(props) => <GuestLayout {...props} />}
+      />
+
+      <Route
+        path="/guest/products"
+        render={(props) => <GuestLayout {...props} />}
+      />
+
       {/* ********** */}
 
       {/* OWNER */}
@@ -210,18 +203,13 @@ const Routing = () => {
 };
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <UserContext.Provider value={{ state, dispatch }}>
-      <UserContextInquiryProvider>
-        <DataProvider>
-          <BrowserRouter>
-            <Routing />
-          </BrowserRouter>
-        </DataProvider>
-      </UserContextInquiryProvider>
-    </UserContext.Provider>
+    <UserContext>
+      <BrowserRouter>
+        <Routing />
+      </BrowserRouter>
+    </UserContext>
   );
 }
 

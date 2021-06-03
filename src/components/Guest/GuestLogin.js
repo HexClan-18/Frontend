@@ -7,8 +7,9 @@ import isEmpty from "validator/lib/isEmpty";
 import isEmail from "validator/lib/isEmail";
 import { guestlogin } from "../../api/auth";
 import { Link } from "react-router-dom";
-import { UserContext } from "../App";
 import Header from "../Header";
+import { UserContext } from "../../context/userContext"
+import axios from "axios";
 
 /**
  * @author
@@ -16,13 +17,9 @@ import Header from "../Header";
  **/
 
 const GuestLogin = () => {
-  const { state, dispatch } = useContext(UserContext);
-
+  const context = useContext(UserContext);
   //useHistory instance
   let history = useHistory();
-
-  //inquiry
-  // const { loginHandler } = React.useContext(UserContext);
 
   //this useEffect will run each time when there is a new url value
   useEffect(() => {
@@ -31,7 +28,7 @@ const GuestLogin = () => {
     } else if (isAuthenticated() && isAuthenticated().role === 3) {
       history.push("/guest/dashboard");
     }
-  }, [history]);
+  }, []);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -77,30 +74,21 @@ const GuestLogin = () => {
 
       guestlogin(data)
         .then((response) => {
-          //setting token and user in browser
           setAuthentication(response.data.token, response.data.user);
-          //inquiry
-          // loginHandler(
-          //   response.data.user.firstname,
-          //   response.data.user._id,
-          //   response.data.user.role
-          // );
-          dispatch({ type: "USER", payload: data.user });
+          context.loginHandler({ ...response.data.user, ...response.data.token })
+          axios.defaults.headers.common = { 'Authorization': `Bearer ${localStorage.getItem("jwt")}` }
 
           if (isAuthenticated() && isAuthenticated().role === 1) {
-            console.log("Redirecting to admin dashboard");
             history.push("/admin/dashboard");
           } else if (isAuthenticated() && isAuthenticated().role === 3) {
-            console.log("Redirecting to Guest dashboard");
-            history.push("/guest/dashboard");
+            history.push("/guest/products");
           }
         })
         .catch((err) => {
-          console.log("login api function error: ", err);
           setFormData({
             ...formData,
             loading: false,
-            errorMsg: err.response.data.errorMessage,
+            errorMsg: err.response ? err.response.data.errorMessage : err.message,
           });
         });
     }
