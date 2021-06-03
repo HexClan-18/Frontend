@@ -2,13 +2,16 @@ import Dashboard from "./views/Dashboard";
 import GProfile from "./views/GProfile";
 import inquiryForm from "./views/inquiryForm";
 import inquiryList from "./views/inquiryList";
+import ProductsPage from "../../mainpages/products/Products";
+import CreateProduct from '../../mainpages/createProduct/CreateProduct'
+import DetailProduct from '../../mainpages/detailProduct/DetailProduct'
 
 const dashboardRoutes = [
   {
-    path: "/dashboard",
-    name: "Dashboard",
-    icon: "nc-icon nc-chart-pie-35",
-    component: Dashboard,
+    path: "/products",
+    name: "Accomodations",
+    icon: "nc-icon nc-chat-round",
+    component: ProductsPage,
     layout: "/guest",
   },
   {
@@ -32,6 +35,13 @@ const dashboardRoutes = [
     component: inquiryList,
     layout: "/guest",
   },
+  {
+    path: "/detail/:id",
+    name: "View Details",
+    icon: "nc-icon nc-chat-round",
+    component: DetailProduct,
+    layout: "/guest",
+  }
 ];
 
 export default dashboardRoutes;

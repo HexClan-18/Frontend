@@ -4,7 +4,7 @@ import "./inquiryCSS/inquiryForm.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 // import GuestSidebar from "../Guest/GuestSidebar/GuestSidebar";
-import { UserContextInquiry } from "../../context/userContextInquiry";
+import { UserContextInquiry } from "../../context/userContext";
 
 export default class inquiryform extends Component {
   static contextType = UserContextInquiry;

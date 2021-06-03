@@ -1,21 +1,31 @@
-import React, { useContext, useState } from 'react'
-import { GlobalState } from '../../../GlobalState'
+import React, { useContext, useState, useEffect } from 'react'
 import ProductItem from '../utils/productItem/ProductItem'
 import Loading from '../utils/loading/Loading'
 import axios from 'axios'
 import Filters from './Filters'
 import LoadMore from './LoadMore'
-
+import { UserContext } from '../../../context/userContext'
+import NotFound from '../utils/not_found/NotFound'
 
 function Products() {
-    const state = useContext(GlobalState)
-    const [products, setProducts] = state.productsAPI.products
-    const [isAdmin] = state.userAPI.isAdmin
-    console.log(isAdmin);
-    const [token] = state.token
-    const [callback, setCallback] = state.productsAPI.callback
+    const state = useContext(UserContext)
+    const [categories, setCategories] = useState([])
+    const [callback, setCallback] = useState(false)
+    const [products, setProducts] = useState([])
+    const [category, setCategory] = useState('');
+    const [sort, setSort] = useState('');
+    const [search, setSearch] = useState('');
+    const [page, setPage] = useState(1)
+    const [result, setResult] = useState(0)
+
+    const handleCategory = e => {
+        setCategory(e.target.value)
+        setSearch('')
+    }
+
+    const isAdmin = state.loginDetails.role === 1
+    const token = state.loginDetails.token
     const [loading, setLoading] = useState(false)
-    const [isCheck, setIsCheck] = useState(false)
 
     const handleCheck = (id) => {
         products.forEach(product => {
@@ -23,6 +33,35 @@ function Products() {
         })
         setProducts([...products])
     }
+
+    //Filter Function
+    const getProducts = async () => {
+        const res = await axios.get(`/api/products?limit=${page * 9}&${category}&${sort}&title[regex]=${search}`)
+        setProducts(res.data.products)
+        setResult(res.data.result)
+    }
+
+    //Get categories
+    const getCategories = async () => {
+        const res = await axios.get('/api/category')
+        setCategories(res.data)
+    }
+
+
+
+    useEffect(() => {
+        getProducts()
+    }, [callback, category, sort, search, page,])
+
+    useEffect(() => {
+        console.log(state.loginDetails);
+    }, [])
+
+    useEffect(() => {
+        getCategories()
+    }, [callback])
+
+
 
     const deleteProduct = async (id, public_id) => {
         try {
@@ -43,33 +82,38 @@ function Products() {
         }
     }
 
-    // const checkAll = () =>{
-    //     products.forEach(product => {
-    //         product.checked = !isCheck
-    //     })
-    //     setProducts([...products])
-    //     setIsCheck(!isCheck)
-    // }
-
-    // const deleteAll = () =>{
-    //     products.forEach(product => {
-    //         if(product.checked) deleteProduct(product._id, product.images.public_id)
-    //     })
-    // }
-
     if (loading) return <div><Loading /></div>
     return (
         <>
-            <Filters />
+            <div className="filter_menu">
+                <div className="row">
+                    <span>Filter Here: </span>
+                    <select name="category" value={category} onChange={handleCategory} >
+                        <option value=''>Select Accommodation Category</option>
+                        {
+                            categories.map(category => (
+                                <option value={"category=" + category.name} key={category._id}>
+                                    {category.name}
+                                </option>
+                            ))
+                        }
+                    </select>
+                </div>
 
-            {/* {
-            isAdmin && 
-            <div className="delete-all">
-                <span>Select all</span>
-                <input type="checkbox" checked={isCheck} onChange={checkAll} />
-                <button onClick={deleteAll}>Delete ALL</button>
+                <input type="text" value={search} placeholder="Where do you search an accommodation?"
+                    onChange={e => setSearch(e.target.value.toLowerCase())} />
+
+                <div className="row sort">
+                    <span>Sort By: </span>
+                    <select value={sort} onChange={e => setSort(e.target.value)} >
+                        <option value=''>Newest</option>
+                        {/* <option value='sort=oldest'>Oldest</option> */}
+                        {/* <option value='sort=-sold'>Best sales</option> */}
+                        <option value='sort=-price'>Price: High-Low</option>
+                        <option value='sort=price'>Price: Low-High</option>
+                    </select>
+                </div>
             </div>
-        } */}
 
             <div className="products">
                 {
@@ -80,7 +124,12 @@ function Products() {
                 }
             </div>
 
-            <LoadMore />
+            <div className="load_more">
+                {
+                    result < page * 9 ? <NotFound />
+                        : <button onClick={() => setPage(page + 1)}>Load more</button>
+                }
+            </div>
             {products.length === 0}
         </>
     )

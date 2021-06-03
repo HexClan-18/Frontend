@@ -1,8 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { useHistory, useParams } from "react-router-dom";
-// import { GlobalState } from "../../../GlobalState";
-// import Loading from "../utils/loading/Loading";
+import { UserContext } from "../../context/userContext";
 
 const initialState = {
   product_id: "",
@@ -15,21 +14,37 @@ const initialState = {
 };
 
 function CreateProduct() {
-  //   const state = useContext(GlobalState);
+  const state = useContext(UserContext);
+  const isAdmin = state.loginDetails.role === 1
   const [product, setProduct] = useState(initialState);
-  //   const [categories] = state.categoriesAPI.categories;
   const [images, setImages] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  //   const [isAdmin] = state.userAPI.isAdmin;
-  const [token] = state.token;
+  const token = state.loginDetails.token;
+  const [products, setProducts] = useState()
 
   const history = useHistory();
   const param = useParams();
-
-  //   const [products] = state.productsAPI.products;
   const [onEdit, setOnEdit] = useState(false);
-  //   const [callback, setCallback] = state.productsAPI.callback;
+
+  //Filter Function
+  const getProducts = async () => {
+    const res = await axios.get(`/api/products?limit=${1 * 9}&${""}&${1}&title[regex]=${""}`)
+    setProducts(res.data.products)
+    setResult(res.data.result)
+  }
+
+
+  //Get categories
+  const getCategories = async () => {
+    const res = await axios.get('/api/category')
+    setCategories(res.data)
+  }
+
+  useEffect(() => {
+    getProducts()
+    getCategories()
+  }, [])
+
 
   useEffect(() => {
     if (param.id) {
@@ -140,16 +155,6 @@ function CreateProduct() {
     <div className="create_product">
       <div className="upload">
         <input type="file" name="file" id="file_up" />
-        {/* {loading ? (
-          <div id="file_img">
-            <Loading />
-          </div>
-        ) : (
-          <div id="file_img" style={styleUpload}>
-            <img src={images ? images.url : ""} alt="" />
-            <span onClick={handleDestroy}>X</span>
-          </div>
-        )} */}
       </div>
 
       <form>

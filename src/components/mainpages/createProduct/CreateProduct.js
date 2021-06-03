@@ -3,6 +3,7 @@ import axios from 'axios'
 import { GlobalState } from '../../../GlobalState'
 import Loading from '../utils/loading/Loading'
 import { useHistory, useParams } from 'react-router-dom'
+import { UserContext } from "../../../context/userContext";
 
 const initialState = {
   title: '',
@@ -17,32 +18,56 @@ const initialState = {
 }
 
 function CreateProduct() {
-  const state = useContext(GlobalState)
+  const state = useContext(UserContext)
   const [product, setProduct] = useState(initialState)
-  const [categories] = state.categoriesAPI.categories
   const [images, setImages] = useState(false)
   const [loading, setLoading] = useState(false)
 
 
-  const [isAdmin] = state.userAPI.isAdmin
-  const [token] = state.token
+  const isAdmin = state.loginDetails.role === 1
+  const token = state.loginDetails.token;
+
 
   const history = useHistory()
   const param = useParams()
 
-  const [products] = state.productsAPI.products
+  const [products, setProducts] = useState([])
+  const [categories, setCategories] = useState([])
   const [onEdit, setOnEdit] = useState(false)
-  const [callback, setCallback] = state.productsAPI.callback
+  const [callback, setCallback] = useState(false)
+
+
+  //Filter Function
+  const getProduct = async (id) => {
+    const res = await axios.get(`/api/products/${id}`)
+    setProduct(res.data.products)
+  }
+
+
+  //Get categories
+  const getCategories = async () => {
+    const res = await axios.get('/api/category')
+    setCategories(res.data)
+  }
+
+  useEffect(() => {
+    getCategories()
+    if (param.id) {
+      setOnEdit(true)
+      getProduct(param.id)
+    } else {
+      setOnEdit(false)
+      setProduct(initialState)
+      setImages(false)
+    }
+  }, [])
+
+
 
   useEffect(() => {
     if (param.id) {
       setOnEdit(true)
-      products.forEach(product => {
-        if (product._id === param.id) {
-          setProduct(product)
-          setImages(product.images)
-        }
-      })
+      getProduct(param.id)
     } else {
       setOnEdit(false)
       setProduct(initialState)
@@ -110,16 +135,6 @@ function CreateProduct() {
           headers: { Authorization: token }
         })
       } else {
-        //                    geocodeByAddress(product.location)
-        //                    .then(results => getLatLng(results[0]))
-        //   .then(({ lat, lng }) => {
-        //     console.log('Success', { lat, lng })
-        //     this.setState({ lat: lat })
-        //     this.setState({ lng: lng })
-        //     console.log(lat)
-        //     console.log(lng)
-        //   })
-
         await axios.post('/api/products', { ...product, images }, {
           headers: { Authorization: token }
 

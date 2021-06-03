@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Card, Container, Row, Col } from "react-bootstrap";
-import { UserContext } from "../../../App";
+import { UserContext } from "../../../../context/userContext";
 import swal from "sweetalert";
 import * as CgIcons from "react-icons/cg";
 import * as GrIcons from "react-icons/gr";
@@ -12,7 +12,7 @@ import * as GrIcons from "react-icons/gr";
 
 const OProfile = () => {
   const [data, setData] = useState([]);
-  const { state, dispatch } = useContext(UserContext);
+  const state = useContext(UserContext);
   const [image, setImage] = useState("");
 
   useEffect(() => {
@@ -257,7 +257,7 @@ const OProfile = () => {
                                 alt="dp"
                                 src={item.pic}
 
-                                // src={state ? state.pic : "loading"}
+                              // src={state ? state.pic : "loading"}
                               />
                             </div>
                             <div>

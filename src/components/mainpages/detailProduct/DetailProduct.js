@@ -1,24 +1,26 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { GlobalState } from '../../../GlobalState'
+import { UserContext } from "../../../context/userContext"
 import ProductItem from '../utils/productItem/ProductItem'
+import axios from 'axios'
 
 
 function DetailProduct() {
   const params = useParams()
-  const state = useContext(GlobalState)
-  const [products] = state.productsAPI.products
-  const addCart = state.userAPI.addCart
+  const state = useContext(UserContext)
   const [detailProduct, setDetailProduct] = useState([])
+
+  //Filter Function
+  const getProduct = async (id) => {
+    const res = await axios.get(`/api/products/${id}`)
+    setDetailProduct(res.data.products)
+  }
 
   useEffect(() => {
     if (params.id) {
-
-      products.forEach(product => {
-        if (product._id === params.id) setDetailProduct(product)
-      })
+      getProduct(params.id)
     }
-  }, [params.id, products])
+  }, [params.id, detailProduct])
 
   if (detailProduct.length === 0) return null;
 
@@ -29,15 +31,12 @@ function DetailProduct() {
         <div className="box-detail">
           <div className="row">
             <h2>{detailProduct.title}</h2>
-            {/* <h6>#id: {detailProduct._id}</h6> */}
           </div>
 
           <span>Rs. {detailProduct.price}</span>
           <p>{detailProduct.description}</p>
           <p>{detailProduct.content}</p>
-          {/* <p>Reserved: {detailProduct.sold}</p> */}
           <Link to="/payment" className="cart"
-          // onClick={() => addCart(detailProduct)}
           >
             Book Now
                     </Link><br></br>
@@ -59,12 +58,7 @@ function DetailProduct() {
       <div>
         <h2>Related Accommodations</h2>
         <div className="products">
-          {
-            products.map(product => {
-              return product.category === detailProduct.category
-                ? <ProductItem key={product._id} product={product} /> : null
-            })
-          }
+          <ProductItem key={detailProduct._id} product={detailProduct} />
         </div>
       </div>
     </>

@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
-import { UserContext } from "../../../App";
+import { UserContext } from "../../../../context/userContext";
 import "../../GuestProfile/GProfile.css";
 import swal from "sweetalert";
 import { Card, Container, Row, Col } from "react-bootstrap";
 import * as CgIcons from "react-icons/cg";
 import * as GrIcons from "react-icons/gr";
 import Axios from 'axios'
+import axios from "axios";
 
 /**
  * @author
@@ -14,7 +15,7 @@ import Axios from 'axios'
 
 const GProfile = () => {
   const [data, setData] = useState([]);
-  const { state, dispatch } = useContext(UserContext);
+  const state = useContext(UserContext);
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState("");
 
@@ -44,32 +45,14 @@ const GProfile = () => {
       data.append("file", image);
       data.append("upload_preset", "board-me-in");
       data.append("cloud_name", "board-me-in");
-      fetch(" https://api.cloudinary.com/v1_1/board-me-in/image/upload", {
-        method: "post",
-        body: data,
-      })
-        .then((res) => res.json())
+      Axios.post(" https://api.cloudinary.com/v1_1/board-me-in/image/upload", data)
         .then((data) => {
-          fetch("/updatepic", {
-            method: "put",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("jwt"),
-            },
-            body: JSON.stringify({
-              pic: data.url,
-            }),
-          })
-            .then((res) => res.json())
+          Axios.put("/updatepic", JSON.stringify({ pic: data.url }))
             .then((result) => {
-              console.log(result);
-              // localStorage.setItem(
-              //   "user",
-              //   JSON.stringify({ ...state, pic: result.pic })
-              // );
-              // dispatch({ type: "UPDATEPIC", payload: result.pic });
               window.location.reload();
-              console.log("State:", state);
+            })
+            .catch((err) => {
+              console.log(err);
             });
         })
         .catch((err) => {
@@ -77,6 +60,7 @@ const GProfile = () => {
         });
     }
   }, [image]);
+
   const updatePhoto = (file) => {
     setImage(file);
   };
@@ -102,22 +86,9 @@ const GProfile = () => {
    * USERNAME
    ***************************/
   const UsernameUpdate = (firstname, lastname) => {
-    fetch("/username", {
-      method: "put",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("jwt"),
-      },
-      body: JSON.stringify({
-        firstname,
-        lastname,
-      }),
-    })
-      .then((res) => res.json(swal("Please Provide a Name!")))
+    Axios.put('/username', JSON.stringify({ firstname, lastname }))
       .then((result) => {
         swal("Successfully Updated!");
-
-        console.log(result);
         const newData = data.map((item) => {
           if (item._id === result._id) {
             return result;
@@ -136,21 +107,9 @@ const GProfile = () => {
    * BIO
    ***************************/
   const bioUpdate = (bio) => {
-    fetch("/bio", {
-      method: "put",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("jwt"),
-      },
-      body: JSON.stringify({
-        bio,
-      }),
-    })
-      .then((res) => res.json(swal("Please Provide a Bio!")))
+    Axios.put('/bio', JSON.stringify({ bio }))
       .then((result) => {
         swal("Successfully Updated!");
-
-        console.log(result);
         const newData = data.map((item) => {
           if (item._id === result._id) {
             return result;
@@ -161,7 +120,6 @@ const GProfile = () => {
         setData(newData);
       })
       .catch((err) => {
-        // swal("Could not Updated!");
         console.log(err);
       });
   };
@@ -170,17 +128,8 @@ const GProfile = () => {
    * LOCATION
    ***************************/
   const locationUpdate = (location) => {
-    fetch("/location", {
-      method: "put",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("jwt"),
-      },
-      body: JSON.stringify({
-        location,
-      }),
-    })
-      .then((res) => res.json(swal("Please Provide a Location!")))
+
+    Axios.put('/location', JSON.stringify({ location }))
       .then((result) => {
         swal("Successfully Updated!");
         console.log(result);
@@ -202,21 +151,9 @@ const GProfile = () => {
    * PASSWORD
    ***************************/
   const passwordUpdate = (password, password2) => {
-    fetch("/password", {
-      method: "put",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("jwt"),
-      },
-      body: JSON.stringify({
-        password,
-        password2,
-      }),
-    })
-      .then((res) => res.json(swal("Passwords do not match!")))
+    Axios.put("/password", JSON.stringify({ password, password2 }))
       .then((result) => {
         swal("Successfully Updated!");
-        console.log(result);
         const newData = data.map((item) => {
           if (item._id === result._id) {
             return result;

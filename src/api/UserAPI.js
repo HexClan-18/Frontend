@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 function UserAPI(token) {
+    console.log("USer Api in globalStates", token);
     const [isLogged, setIsLogged] = useState(false)
     const [isAdmin, setIsAdmin] = useState(false)
     const [cart, setCart] = useState([])
     const [history, setHistory] = useState([])
 
     useEffect(() => {
+
         if (token) {
             const getUser = async () => {
                 try {
@@ -16,6 +18,7 @@ function UserAPI(token) {
                     })
 
                     setIsLogged(true)
+                    console.log(res.data);
                     res.data.role === 1 ? setIsAdmin(true) : setIsAdmin(false)
 
                     setCart(res.data.cart)
